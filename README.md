@@ -10,3 +10,5 @@ On this full-stack web application a user will have the ability of creating, del
 |Author| char |
 |Title | char |
 |created_Date| int|
+
+![Alt text](../Blogging.png)
