@@ -1,7 +1,14 @@
 import React from 'react'
 
-export default function ArticleCard() {
+const ArticleCard = ({ article }) => {
   return (
-    <div>ArticleCard</div>
+    <div className="card">
+      <div className="card-content">
+        <h3 className="card-title">{article.title}</h3>
+        <p className="card-body">{article.summary}</p>
+      </div>
+    </div>
   )
 }
+
+export default ArticleCard
