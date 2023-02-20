@@ -6,8 +6,8 @@ import ArticleView from './components/ArticleView';
 function App() {
   return (
     <div className="App">
-     <ArticleCard />
-     <ArticleView />
+     <ArticleCard title='titles' />
+     {/* <ArticleView /> */}
      
     </div>
   );
