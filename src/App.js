@@ -1,16 +1,14 @@
 import React from 'react';
-import ArticleCard from './components/ArticleCard';
-import ArticleView from './components/ArticleView';
-// import Editor from './components/Editor';
+import Header from './components/Header';
+import Main from './components/Main';
 
-function App() {
+
+function App() 
   return (
-    <div className="App">
-     <ArticleCard title='titles' />
-     {/* <ArticleView /> */}
-     
-    </div>
+  <>
+    <Header />
+    <Main />
+  </>
   );
-}
 
 export default App;
