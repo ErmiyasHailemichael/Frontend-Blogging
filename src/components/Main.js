@@ -45,7 +45,10 @@ export default function Main() {
         await fetch(URL + id + '/', {
             method: 'DELETE'
         });
-        useEffect(() => {
+        getBlog();
+    }
+
+    useEffect(() => {
         getBlog();
     }, []);
 
@@ -57,6 +60,4 @@ export default function Main() {
             </Routes>
         </main>
     );  
-}  
-
-    
+}
