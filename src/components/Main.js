@@ -4,59 +4,58 @@ import Index from '../pages/Index';
 import Show from '../pages/Show';
 
 
-const URL = 'https://localhost:8000/blog/';
+
 
 export default function Main() {
-    const [blog, setBlog] = useState(null);
+    const [blogs, setBlogs] = useState(null);
 
     // Index
-    const getBlog = async () => {
-        const response = await fetch(URL);
-        const data = await response.json();
-        setBlog(data);
+    const getBlogs = async () => {
+        const data = await fetch('https://localhost:8000/blog/').then((res) => res.json());
+        setBlogs(data);
     }
 
     // Create
     const createBlog = async (blog) => {
-        await fetch(URL, {
+        await fetch('https://localhost:8000/blog/', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify(blog)
         });
-        getBlog();
+        getBlogs();
     }
 
     // Update
     const updateBlog = async (blog, id) => {
-        await fetch(URL + id + '/', {
+        await fetch('https://localhost:8000/blog/'+ id , {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify(blog)
         });
-        getBlog();
+        getBlogs();
     }
 
     // Delete
     const deleteBlog = async (id) => {
-        await fetch(URL + id + '/', {
+        await fetch('https://localhost:8000/blog/'+ id , {
             method: 'DELETE'
         });
-        getBlog();
+        getBlogs();
     }
 
     useEffect(() => {
-        getBlog();
+        getBlogs();
     }, []);
 
     return (
         <main>
             <Routes>
-                <Route exact path='/' element={<Index blog={blog} createBlog={createBlog} />} />
-                <Route path='/:id' element={<Show blog={blog} />} updateBlog={updateBlog} deleteBlog={deleteBlog} />
+                <Route exact path='/' element={<Index blogs={blogs} createBlog={createBlog} />} />
+                <Route path='/:id' element={<Show blogs={blogs} />} updateBlog={updateBlog} deleteBlog={deleteBlog} />
                 
             </Routes>
         </main>

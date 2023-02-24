@@ -31,8 +31,7 @@ export default function Index(props) {
       .then(data => {
         setBlogPosts(data);
         setLoading(false);
-      })
-      .catch(err => console.error(err));
+      }).catch(err => console.error(err));
   }, []);
 
   return (

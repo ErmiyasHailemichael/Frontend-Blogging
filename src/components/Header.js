@@ -4,13 +4,13 @@ import { Link } from 'react-router-dom';
 
 function Header() {
   return (
-<Header>
-        <h1>
+    <nav>
+        
          <Link to='/'>
           <div>Header</div>
         </Link> 
-        </h1>
-      </Header>
+        
+      </nav>
     )
   }
 
