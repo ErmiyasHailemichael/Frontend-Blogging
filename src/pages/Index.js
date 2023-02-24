@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import React, { useState, useEffect } from 'react';
 
 export default function Index({blogs, createBlogs}) {
-    // console.log(blogs);
+    console.log(blogs); // i can see the blogs on the dev tools console
   const [form, setForm] = useState({
     title: '',
     body: '',
@@ -40,7 +40,7 @@ export default function Index({blogs, createBlogs}) {
   <h1>Loading...</h1>
 ) : (
   blogPosts.map((post) => {
-    console.log(post); // Check if post is being mapped correctly - Lauren 
+    // console.log(post); // Check if post is being mapped correctly - Lauren 
     return (
       <div key={post.id}>
         <Link to={`/blog/${post._id}`}>
