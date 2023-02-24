@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import React, { useState, useEffect } from 'react';
 
 export default function Index({blogs, createBlogs}) {
+    // console.log(blogs);
   const [form, setForm] = useState({
     title: '',
     body: '',
@@ -25,14 +26,7 @@ export default function Index({blogs, createBlogs}) {
     });
   }
 
-  useEffect(() => {
-    fetch('/api/blog')
-      .then(res => res.json())
-      .then(data => {
-        setBlogPosts(data);
-        setLoading(false);
-      }).catch(err => console.error(err));
-  }, []);
+ 
 
   return (
     <section>
@@ -42,20 +36,22 @@ export default function Index({blogs, createBlogs}) {
         <input type='text' name='author' value={form.author} onChange={handleChange} />
         <input type='submit' value='Create Blog' />
       </form>
-      {loading ?
-        <h1>Loading...</h1> :
-        blogPosts.map((post) => (
-        
-          <div key={post.id}>
-            <Link to={`/blog/${post._id}`}>
+      {loading ? (
+  <h1>Loading...</h1>
+) : (
+  blogPosts.map((post) => {
+    console.log(post); // Check if post is being mapped correctly - Lauren 
+    return (
+      <div key={post.id}>
+        <Link to={`/blog/${post._id}`}>
           <h1>{post.title}</h1>
         </Link>
-            <h1>{post.title}</h1>
-            <p>{post.body}</p>
-            <p>{post.author}</p>
-          </div>
-        ))
-      }
+        <p>{post.body}</p>
+        <p>{post.author}</p>
+      </div>
+    );
+  })
+)}
     </section>
   )
 }
