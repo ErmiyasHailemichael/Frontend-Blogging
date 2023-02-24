@@ -4,20 +4,21 @@ import Index from '../pages/Index';
 import Show from '../pages/Show';
 
 
+const URL =  'http://localhost:8000/blog/';
 
-
-export default function Main() {
+const Main = () => {
     const [blogs, setBlogs] = useState(null);
 
     // Index
     const getBlogs = async () => {
-        const data = await fetch('https://localhost:8000/blog/').then((res) => res.json());
+        const data = await fetch(URL).then((res) => res.json());
         setBlogs(data);
-    }
+      };
+
 
     // Create
-    const createBlog = async (blog) => {
-        await fetch('https://localhost:8000/blog/', {
+    const createBlogs = async (blog) => {
+        await fetch(URL, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -28,8 +29,8 @@ export default function Main() {
     }
 
     // Update
-    const updateBlog = async (blog, id) => {
-        await fetch('https://localhost:8000/blog/'+ id , {
+    const updateBlogs = async (blog, id) => {
+        await fetch(URL + id , {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json'
@@ -40,8 +41,8 @@ export default function Main() {
     }
 
     // Delete
-    const deleteBlog = async (id) => {
-        await fetch('https://localhost:8000/blog/'+ id , {
+    const deleteBlogs = async (id) => {
+        await fetch(URL + id , {
             method: 'DELETE'
         });
         getBlogs();
@@ -54,10 +55,13 @@ export default function Main() {
     return (
         <main>
             <Routes>
-                <Route exact path='/' element={<Index blogs={blogs} createBlog={createBlog} />} />
-                <Route path='/:id' element={<Show blogs={blogs} />} updateBlog={updateBlog} deleteBlog={deleteBlog} />
+                <Route path='/' element={<Index blogs={blogs} createBlogs={createBlogs} />} />
+                <Route path='/blog/:id' element={<Show blogs={blogs} />} 
+                updateBlogs={updateBlogs} deleteBlogs={deleteBlogs} />
                 
             </Routes>
         </main>
     );  
 }
+
+export default Main;

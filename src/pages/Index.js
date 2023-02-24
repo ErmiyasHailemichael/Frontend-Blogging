@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import React, { useState, useEffect } from 'react';
 
-export default function Index(props) {
+export default function Index({blogs, createBlogs}) {
   const [form, setForm] = useState({
     title: '',
     body: '',
@@ -17,7 +17,7 @@ export default function Index(props) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    props.createBlog(form);
+    createBlogs(form);
     setForm({
       title: '',
       body: '',
@@ -47,7 +47,7 @@ export default function Index(props) {
         blogPosts.map((post) => (
         
           <div key={post.id}>
-            <Link to={`/people/${post._id}`}>
+            <Link to={`/blog/${post._id}`}>
           <h1>{post.title}</h1>
         </Link>
             <h1>{post.title}</h1>
