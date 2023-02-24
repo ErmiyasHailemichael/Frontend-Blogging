@@ -1,7 +1,7 @@
 import {Routes, Route} from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import Index from './pages/Index';
-import Show from './pages/Show';
+import Index from '../pages/Index';
+import Show from '../pages/Show';
 
 
 const URL = 'https://localhost:8000/blog/';
@@ -55,8 +55,9 @@ export default function Main() {
     return (
         <main>
             <Routes>
-                <Route path='/' element={<Index blog={blog} />} />
-                <Route path='/:id' element={<Show blog={blog} />} />
+                <Route exact path='/' element={<Index blog={blog} createBlog={createBlog} />} />
+                <Route path='/:id' element={<Show blog={blog} />} updateBlog={updateBlog} deleteBlog={deleteBlog} />
+                
             </Routes>
         </main>
     );  

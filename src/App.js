@@ -3,12 +3,14 @@ import Header from './components/Header';
 import Main from './components/Main';
 
 
-function App() 
+function App() {
+  
   return (
-  <>
-    <Header />
-    <Main />
-  </>
+    <div className="App">
+      <Header />
+      <Main />
+    </div>
   );
+}
 
 export default App;
