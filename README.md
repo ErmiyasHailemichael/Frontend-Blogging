@@ -25,7 +25,7 @@ On this full-stack web application a user will have the ability of creating, del
 ![Alt text](Readme/Blogging.png)
 
 # Live Link
-[Live Link]()
+[Live Link](https://iblogit.netlify.app/)
 # Backend Repository
 [Backend](https://github.com/ErmiyasHailemichael/Backend-Blog)
 
