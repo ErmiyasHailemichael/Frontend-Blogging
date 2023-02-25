@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
+import App from '../App.css';
 
 export default function Index({blogs, createBlogs}) {
   const [form, setForm] = useState({
@@ -43,7 +44,7 @@ export default function Index({blogs, createBlogs}) {
   } 
 
   return (
-    <section>
+    <section className='container'>
       <form onSubmit={handleSubmit}>
         <input
           type='text'
@@ -66,7 +67,7 @@ export default function Index({blogs, createBlogs}) {
           onChange={handleChange}
           placeholder='Author'
         />
-        <input type='submit' value='Create Blog' />
+        <input type='submit' value='Publish' />
       </form>
       {blogs ? loaded() : loading()}
     </section>
