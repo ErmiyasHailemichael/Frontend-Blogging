@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
 
-export default function Index(blogs, createBlogs) {
+export default function Index({blogs, createBlogs}) {
   const [form, setForm] = useState({
     title: '',
     body: '',

@@ -1,7 +1,7 @@
 import {useState} from 'react';
 import {useParams, useNavigate} from 'react-router-dom';
 
-export default function Show(blogs, updateBlogs, deleteBlogs) {
+export default function Show({blogs, updateBlogs, deleteBlogs}) {
   const {id} = useParams();
   const blog = blogs.find((blog) => blog.id === parseInt(id));
   const navigate = useNavigate();
