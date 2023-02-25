@@ -1,19 +1,20 @@
 import { Link } from 'react-router-dom';
-import React, { useState, useEffect } from 'react';
+import { useState } from 'react';
 
-export default function Index({blogs, createBlogs}) {
-    console.log(blogs); // i can see the blogs on the dev tools console
+export default function Index(blogs, createBlogs) {
   const [form, setForm] = useState({
     title: '',
     body: '',
-    author: ''
+    author: '',  
   });
 
-  const [blogPosts, setBlogPosts] = useState([]);
-  const [loading, setLoading] = useState(true);
-
   const handleChange = (e) => {
-    setForm({ ...form, [e.target.name]: e.target.value });
+    setForm((prevState) => {
+      return {
+        ...prevState,
+        [e.target.name]: e.target.value,
+      };
+    });
   }
 
   const handleSubmit = (e) => {
@@ -24,34 +25,51 @@ export default function Index({blogs, createBlogs}) {
       body: '',
       author: ''
     });
-  }
+  };
 
- 
+  const loaded = () => 
+    blogs.map((blog) => (
+      <div key={blog.id} className='blog'>
+        <Link to={`/blog/${blog.id}`}>
+          <h1>{blog.title}</h1>
+        </Link>
+        <h3>{blog.author}</h3>
+        <p>{blog.body}</p>
+      </div>
+    ));
+
+  const loading = () => {
+    return <h1>Loading...</h1>;
+  } 
 
   return (
     <section>
       <form onSubmit={handleSubmit}>
-        <input type='text' name='title' value={form.title} onChange={handleChange} />
-        <input type='text' name='body' value={form.body} onChange={handleChange} />
-        <input type='text' name='author' value={form.author} onChange={handleChange} />
+        <input
+          type='text'
+          name='title'
+          value={form.title}
+          onChange={handleChange}
+          placeholder='Title'
+        />
+        <input
+          type='text'
+          name='body'
+          value={form.body}
+          onChange={handleChange}
+          placeholder='Body'
+        />
+        <input
+          type='text'
+          name='author'
+          value={form.author}
+          onChange={handleChange}
+          placeholder='Author'
+        />
         <input type='submit' value='Create Blog' />
       </form>
-      {loading ? (
-  <h1>Loading...</h1>
-) : (
-  blogPosts.map((post) => {
-    // console.log(post); // Check if post is being mapped correctly - Lauren 
-    return (
-      <div key={post.id}>
-        <Link to={`/blog/${post._id}`}>
-          <h1>{post.title}</h1>
-        </Link>
-        <p>{post.body}</p>
-        <p>{post.author}</p>
-      </div>
-    );
-  })
-)}
+      {blogs ? loaded() : loading()}
     </section>
-  )
+      
+  );
 }

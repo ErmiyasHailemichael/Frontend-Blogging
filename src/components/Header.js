@@ -7,7 +7,7 @@ function Header() {
     <nav>
         
          <Link to='/'>
-          <div>Header</div>
+          <div></div>
         </Link> 
         
       </nav>

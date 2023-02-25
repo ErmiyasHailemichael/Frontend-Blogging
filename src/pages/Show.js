@@ -1,55 +1,61 @@
-import { useParams, useNavigate } from "react-router-dom";
-import { useState } from "react";
+import {useState} from 'react';
+import {useParams, useNavigate} from 'react-router-dom';
 
-export default function Show(blog, updateBlog, deleteBlog) {
-  const { id } = useParams();
-  const selectedBlog = blog.find((b) => b.id === parseInt(id));
+export default function Show(blogs, updateBlogs, deleteBlogs) {
+  const {id} = useParams();
+  const blog = blogs.find((blog) => blog.id === parseInt(id));
   const navigate = useNavigate();
-  const [editForm, setEditForm] = useState(selectedBlog);
+
+  const [ediform, setEditForm] = useState(blog);
 
   const handleChange = (e) => {
-    setEditForm({ ...editForm, [e.target.name]: e.target.value });
-  };
+    setEditForm({
+      ...ediform,
+      [e.target.name]: e.target.value,
+    });
+    };
 
-  const handleSubmit = (e) => {
+  const handleUpdate = (e) => {
     e.preventDefault();
-    updateBlog(editForm, selectedBlog.id);
-    navigate("/");
-  };
+    updateBlogs(ediform, id);
+    navigate('/');
+  }
 
-  const handleDelete = (e) => {
-    e.preventDefault();
-    deleteBlog(selectedBlog.id);
-    navigate("/");
+  const removeBlog = () => {
+    deleteBlogs(id);
+    navigate('/');
   };
 
   return (
-    <section>
-      <h1>{selectedBlog.title}</h1>
-      <p>{selectedBlog.body}</p>
-      <p>{selectedBlog.author}</p>
-      <form onSubmit={handleSubmit}>
+    <div>
+      <h1>{blog.title}</h1>
+      <h3>{blog.author}</h3>
+      <p>{blog.body}</p>
+      <button id = 'Delete' onClick={removeBlog}>Delete</button>
+      <form onSubmit={handleUpdate}>
         <input
-          type="text"
-          name="title"
-          value={editForm.title}
+          type='text'
+          name='title'
+          value={ediform.title}
           onChange={handleChange}
+          placeholder='Title'
         />
         <input
-          type="text"
-          name="body"
-          value={editForm.body}
+          type='text'
+          name='body'
+          value={ediform.body}
           onChange={handleChange}
+          placeholder='Body'
         />
         <input
-          type="text"
-          name="author"
-          value={editForm.author}
+          type='text'
+          name='author'
+          value={ediform.author}
           onChange={handleChange}
+          placeholder='Author'
         />
-        <input type="submit" value="Update Blog" />
+        <input type='submit' value='Update' />
       </form>
-      <button onClick={handleDelete}>Delete Blog</button>
-    </section>
+    </div>
   );
 }
