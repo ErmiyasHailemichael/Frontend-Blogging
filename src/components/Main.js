@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useNavigate, Navigate } from "react-router-dom";
 import Index from "../pages/Index";
 import Show from "../pages/Show";
-
+import Write from "../pages/Write";
 const Main = () => {
   const [blogs, setBlogs] = useState([]);
 
   const url = `https://final-jwwb.onrender.com/blogs/`;
-
+  const navigate = useNavigate(); /// added this
   const getBlogs = async () => {
     const response = await fetch(url);
     const data = await response.json();
@@ -23,6 +23,7 @@ const Main = () => {
       body: JSON.stringify(blog),
     });
     getBlogs();
+    navigate("/"); /// added this
   };
 
   const updateBlogs = async (blog, id) => {
@@ -42,7 +43,7 @@ const Main = () => {
     });
     getBlogs();
   };
-  
+
   useEffect(() => {
     getBlogs();
   }, []);
@@ -53,12 +54,7 @@ const Main = () => {
         <Route
           exact
           path="/"
-          element={
-            <Index
-              blogs={blogs}
-              createBlogs={createBlogs}
-            />
-          }
+          element={<Index blogs={blogs} createBlogs={createBlogs} />}
         />
         <Route
           path="/blog/:id"
@@ -70,15 +66,10 @@ const Main = () => {
             />
           }
         />
-        {/* <Route
+        <Route
           path="/write"
-          element={
-            <Show
-              blogs={blogs}
-              createBlogs={createBlogs}
-            />
-          }
-        /> */}
+          element={<Write blogs={blogs} createBlogs={createBlogs} />} // added this
+        />
       </Routes>
     </main>
   );

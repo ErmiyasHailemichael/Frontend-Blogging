@@ -8,24 +8,24 @@ export default function Index({ blogs, createBlogs }) {
     author: '',
   });
 
-  const handleChange = (e) => {
-    setForm((prevState) => {
-      return {
-        ...prevState,
-        [e.target.name]: e.target.value,
-      };
-    });
-  };
+  // const handleChange = (e) => {
+  //   setForm((prevState) => {
+  //     return {
+  //       ...prevState,
+  //       [e.target.name]: e.target.value,
+  //     };
+  //   });
+  // };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    createBlogs(form);
-    setForm({
-      title: '',
-      body: '',
-      author: '',
-    });
-  };
+  // const handleSubmit = (e) => {
+  //   e.preventDefault();
+  //   createBlogs(form);
+  //   setForm({
+  //     title: '',
+  //     body: '',
+  //     author: '',
+  //   });
+  // };
 
   const reading = (str, num) => {
     return str?.length > num ? str.slice(0, num) + '...' : str;
@@ -64,7 +64,7 @@ export default function Index({ blogs, createBlogs }) {
 
   return (
     <>
-      <section className="container mx-auto p-6">
+      {/* <section className="container mx-auto p-6">
         <form onSubmit={handleSubmit} className="mb-8">
           <input
             type="text"
@@ -92,9 +92,9 @@ export default function Index({ blogs, createBlogs }) {
           <input type="submit" value="Publish" className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" />
         </form>
       </section>
-      <section className="container mx-auto mt-8">
+      <section className="container mx-auto mt-8"> */}
         {blogs ? loaded() : loading()}
-      </section>
+      {/* </section> */}
     </>
   );
 }
